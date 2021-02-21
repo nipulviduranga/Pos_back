@@ -14,9 +14,9 @@ const saveCustomer = (req, resp) => {
             other: req.body.other
         });
 
-        customer.save().then(result=>{
+        customer.save().then(result => {
             resp.status(200).json({message: 'Success!'});
-        }).catch(exception=>{
+        }).catch(exception => {
             console.log(exception);
             resp.status(500).json({error: exception});
         });
@@ -29,25 +29,42 @@ const saveCustomer = (req, resp) => {
 }
 
 const updateCustomer = (req, resp) => {
+    CustomerDTO.updateOne({_id: req.headers.id}, {
+        $set: {
+            name: req.body.name,
+            address: req.body.address,
+            salary: req.body.salary
+        }
+    }).then(result => {
 
+        if (result.nModified) {
+            resp.status(200).json({message: 'Updated!'});
+        } else {
+            resp.status(500).json({message: 'Try Again!'});
+        }
+
+    }).catch(error => {
+        console.log(error);
+        resp.status(500).json({error: error});
+    })
 }
 
 const deleteCustomer = (req, resp) => {
-    try{
+    try {
 
-        CustomerDTO.deleteOne({_id:req.headers.id}).then(result=>{
+        CustomerDTO.deleteOne({_id: req.headers.id}).then(result => {
 
-            if (result.deletedCount>0){
+            if (result.deletedCount > 0) {
                 resp.status(200).json({message: 'Deleted!'});
-            }else{
+            } else {
                 resp.status(500).json({message: 'Try Again!'});
             }
 
-        }).catch(error=>{
+        }).catch(error => {
             resp.status(500).json({error: error});
         })
 
-    }catch (e) {
+    } catch (e) {
         resp.status(500).json({error: e});
     }
 }
@@ -59,11 +76,11 @@ const getCustomer = (req, resp) => {
 const getAllCustomers = (req, resp) => {
     try {
         // pagination
-        CustomerDTO.find().then(result=>{
+        CustomerDTO.find().then(result => {
 
             resp.status(200).json({dataSet: result});
 
-        }).catch(exception=>{
+        }).catch(exception => {
             resp.status(500).json({error: exception});
         })
 

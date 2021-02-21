@@ -9,6 +9,8 @@ router.post('/saveCustomer', CustomerController.saveCustomer); /*saveCustomer()*
 router.get('/getAllCustomers', CustomerController.getAllCustomers);
 //delete(delete) [headers]
 router.delete('/deleteCustomer', CustomerController.deleteCustomer);
+//PUT(Update) [Body]
+router.put('/updateCustomer', CustomerController.updateCustomer);
 
 
 module.exports = router;
