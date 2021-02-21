@@ -29,15 +29,15 @@ const saveCustomer = (req, resp) => {
 }
 
 const updateCustomer = (req, resp) => {
-    CustomerDTO.updateOne({_id: req.headers.id}, {
+    CustomerDTO.updateOne({_id: req.body.id}, {
         $set: {
             name: req.body.name,
             address: req.body.address,
             salary: req.body.salary
         }
     }).then(result => {
-
-        if (result.nModified) {
+        console.log(req.body.id);
+        if (result.nModified>0) {
             resp.status(200).json({message: 'Updated!'});
         } else {
             resp.status(500).json({message: 'Try Again!'});
