@@ -4,6 +4,8 @@ const CustomerDTO = require('../model/CustomerDTO');
 const saveCustomer = (req, resp) => {
     try {
 
+        console.log(req.body);
+
         const customer = new CustomerDTO({
             name: req.body.name,
             address: req.body.address,
@@ -15,6 +17,7 @@ const saveCustomer = (req, resp) => {
         customer.save().then(result=>{
             resp.status(200).json({message: 'Success!'});
         }).catch(exception=>{
+            console.log(exception);
             resp.status(500).json({error: exception});
         });
 
@@ -38,7 +41,7 @@ const getCustomer = (req, resp) => {
 }
 
 const getAllCustomers = (req, resp) => {
-
+    console.log('ok')
 }
 
 module.exports = {
