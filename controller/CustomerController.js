@@ -7,10 +7,11 @@ const saveCustomer = (req, resp) => {
         console.log(req.body);
 
         const customer = new CustomerDTO({
+            id:req.body.id,
             name: req.body.name,
             address: req.body.address,
-            salary: req.body.salary,
-            image: req.body.image,
+            number: req.body.number,
+            value:req.body.value,
             other: req.body.other
         });
 
@@ -31,9 +32,10 @@ const saveCustomer = (req, resp) => {
 const updateCustomer = (req, resp) => {
     CustomerDTO.updateOne({_id: req.body.id}, {
         $set: {
-            name: req.body.name,
-            address: req.body.address,
-            salary: req.body.salary
+            name: req.body.Uname,
+            address: req.body.Uaddress,
+            number: req.body.Unumber,
+            id:req.body.Uid
         }
     }).then(result => {
         console.log(req.body.id);
