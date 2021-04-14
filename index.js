@@ -22,13 +22,14 @@ mongoose.connect('mongodb://127.0.0.1:27017/Kade', {
     useFindAndModify: false,
     useCreateIndex: true
 }).then(() => {
-    app.listen(3000, () => {
-        console.log(`Server Started on port ${port}`)
-    })
-}).catch(error => {
+        console.log('database Connected!')
+    }
+).catch(error => {
     console.log(error);
 })
-
+app.listen(3000, () => {
+    console.log(`Server Started on port ${port}`)
+    });
 
 /*=======================*/
 
