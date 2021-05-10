@@ -12,7 +12,9 @@ app.use(cors())
 /*=============================================*/
 
 const CustomerRoute = require('./routes/CustomerRoute');
-
+const ItemRoute=require('./routes/ItemRoute')
+const SellerRoute=require('./routes/SellerRoute')
+const HistoryRoute=require('./routes/PurchaseHistoryRoute')
 /*=============================================*/
 
 const port = 3000;
@@ -34,5 +36,7 @@ app.listen(3000, () => {
 /*=======================*/
 
 app.use('/api/v1/customerRoute', CustomerRoute);
-
+app.use('/api/v1/ItemRoute', ItemRoute);
+app.use('/api/v1/SellerRoute',SellerRoute)
+app.use('/api/v1/HistoryRoute',HistoryRoute)
 /*=======================*/

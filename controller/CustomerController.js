@@ -35,6 +35,7 @@ const updateCustomer = (req, resp) => {
             name: req.body.Uname,
             address: req.body.Uaddress,
             number: req.body.Unumber,
+            value:req.body.Uvalue,
             id:req.body.Uid
         }
     }).then(result => {
@@ -48,6 +49,24 @@ const updateCustomer = (req, resp) => {
     }).catch(error => {
         console.log(error);
         resp.status(500).json({error: error});
+    })
+}
+const updateCustomerVal = (req, resp) => {
+    CustomerDTO.updateOne({_id: req.body.id}, {
+        $set: {
+            value:req.body.Uvalue,
+        }
+    }).then(result => {
+        console.log(req.body.id);
+        if (result.nModified>0) {
+            resp.status(200).json({message: 'Updated!'});
+        } else {
+            resp.status(500).json({message: 'Try Again!'});
+        }
+
+    }).catch(error => {
+        console.log(error);
+        resp.status(501).json({error: error});
     })
 }
 
@@ -93,5 +112,5 @@ const getAllCustomers = (req, resp) => {
 }
 
 module.exports = {
-    saveCustomer, updateCustomer, deleteCustomer, getCustomer, getAllCustomers
+    saveCustomer, updateCustomer, deleteCustomer, getCustomer, getAllCustomers,updateCustomerVal
 }

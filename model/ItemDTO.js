@@ -19,11 +19,14 @@ const ItemSchema=new mongoose.Schema({
         type:Number
     },
     selectedType:{
-        type:String,
-        required:true
+        type:String
+
     },
     sellerName:{
         type:String
+    },
+    date:{
+      type:String
     },
     Other:{
         type:Array

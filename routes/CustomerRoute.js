@@ -11,6 +11,6 @@ router.get('/getAllCustomers', CustomerController.getAllCustomers);
 router.delete('/deleteCustomer', CustomerController.deleteCustomer);
 //PUT(Update) [Body]
 router.put('/updateCustomer', CustomerController.updateCustomer);
-
+router.put('/updateCustomerValue', CustomerController.updateCustomerVal);
 
 module.exports = router;

@@ -12,6 +12,6 @@ router.get('/getItems', ItemController.getAllItems);
 router.delete('/deleteItem', ItemController.deleteItem);
 //PUT(Update) [Body]
 router.put('/updateItem', ItemController.updateItem);
-
+router.put('/updateItemQty', ItemController.updateItemQty);
 
 module.exports = router;

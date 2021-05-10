@@ -9,7 +9,8 @@ try{
         sellingPrice: req.body.sellingPrice,
         quantity: req.body.quantity,
         selectedType: req.body.selectedType,
-        sellerName: req.body.sellerName
+        sellerName: req.body.sellerName,
+        date:req.body.date
     })
 
     item.save().then(result=>{
@@ -32,7 +33,8 @@ const updateItem = (req,res) =>{
             sellingPrice: req.body.sellingPrice,
             quantity: req.body.quantity,
             selectedType: req.body.selectedType,
-            sellerName: req.body.sellerName
+            sellerName: req.body.sellerName,
+            date:req.body.date
         }
     }).then(result =>{
         if(result.nModified>0) {
@@ -47,6 +49,27 @@ const updateItem = (req,res) =>{
    }catch (e) {
        res.status(500).json({error:e})
    }
+}
+const updateItemQty=(req,res)=>{
+    try{
+        ItemDTO.updateOne({_id:req.body.id},{
+            $set:{
+                quantity: req.body.quantity,
+
+            }
+        }).then(result =>{
+            if(result.nModified>0) {
+                res.status(200).json({message: 'Updated!'});
+            }else {
+                res.status(500).json({message: 'Try Again!'});
+            }
+        }).catch(e=>{
+            console.log(e);
+            res.status(500).json({error:e})
+        });
+    }catch (e) {
+        res.status(500).json({error:e})
+    }
 }
 const deleteItem=(req,res)=>{
   try{
@@ -78,5 +101,5 @@ const getAllItems=(req,res)=>{
 }
 
 module.exports={
-    saveItem,updateItem,deleteItem,getAllItems
+    saveItem,updateItem,deleteItem,getAllItems,updateItemQty
 }
